@@ -842,6 +842,7 @@
    * differs, a mode set eeprom write will be completed at initialization.
    * Use the option below to force an eeprom write to a V3.1 probe regardless.
    */
+  // s. CR-10V2\src\Configuration.h
   //#define BLTOUCH_SET_5V_MODE
 
   /**
@@ -1253,7 +1254,7 @@
    * LED Control Menu
    * Add LED Control to the LCD menu
    */
-  #define LED_CONTROL_MENU
+  //#define LED_CONTROL_MENU
   #if ENABLED(LED_CONTROL_MENU)
     #define LED_COLOR_PRESETS                 // Enable the Preset Color menu option
     //#define NEO2_COLOR_PRESETS              // Enable a second NeoPixel Preset Color menu option
@@ -1956,10 +1957,15 @@
 
 #if EITHER(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL)
   // Override the mesh area if the automatic (max) area is too large
-  //#define MESH_MIN_X MESH_INSET
-  //#define MESH_MIN_Y MESH_INSET
-  //#define MESH_MAX_X X_BED_SIZE - (MESH_INSET)
-  //#define MESH_MAX_Y Y_BED_SIZE - (MESH_INSET)
+
+  // IMPORTANT after changing mesh sizes: 
+  //   M502 ; reset EEPROM
+  //   M500 ; store
+  #define MESH_MIN_X (MESH_INSET + NOZZLE_TO_PROBE_OFFSET_X)
+  #define MESH_MAX_X (X_BED_SIZE - 15)
+
+  #define MESH_MIN_Y (MESH_INSET) // NOZZLE_TO_PROBE_OFFSET_Y)
+  #define MESH_MAX_Y (Y_BED_SIZE - 25)
 #endif
 
 #if BOTH(AUTO_BED_LEVELING_UBL, EEPROM_SETTINGS)
