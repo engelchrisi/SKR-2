@@ -2588,8 +2588,15 @@
    */
   #define INTERPOLATE      true
 
+  // FAQ: https://learn.watterott.com/de/silentstepstick/faq/
+  // @CE@ https://www.reprap.me/creality-3d-two-phase-42-40-reprap-42mm-stepper-motor-for-ender-3-3d-printer.html
+  // @CE@ https://www.reprap.me/creality-3d-two-phase-42-34-reprap-42mm-stepper-motor-for-ender-3-3d-printer.html
+  #define MY_CURRENT_MA(mamps) (mamps*1000 / 1414 * 10 / 9) // @CE@ 90% of 1.5A devided by 1.414
+  #define CURRENT_4240          800 // @CE@ https://www.lesimprimantes3d.fr/forum/topic/10459-pi%C3%A8ges-des-r%C3%A9glages-vref-a4988-ou-drv8825/
+  #define CURRENT_4234          800 // @CE@ https://www.lesimprimantes3d.fr/forum/topic/10459-pi%C3%A8ges-des-r%C3%A9glages-vref-a4988-ou-drv8825/
+
   #if AXIS_IS_TMC(X)
-    #define X_CURRENT       650        // @CE@ was: 800 - (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT       CURRENT_4240        // @CE@ 
     #define X_CURRENT_HOME  X_CURRENT  // (mA) RMS current for sensorless homing
     #define X_MICROSTEPS     16        // 0..256
     #define X_RSENSE          0.11
@@ -2607,7 +2614,7 @@
   #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT       650        // @CE@ was: 800 - 
+    #define Y_CURRENT       CURRENT_4240        // @CE@ 
     #define Y_CURRENT_HOME  Y_CURRENT
     #define Y_MICROSTEPS     16
     #define Y_RSENSE          0.11
@@ -2625,7 +2632,7 @@
   #endif
 
   #if AXIS_IS_TMC(Z)
-    #define Z_CURRENT       580        // @CE@ was: 800 - 
+    #define Z_CURRENT       CURRENT_4234        // @CE@ 
     #define Z_CURRENT_HOME  Z_CURRENT
     #define Z_MICROSTEPS     16
     #define Z_RSENSE          0.11
@@ -2634,7 +2641,7 @@
   #endif
 
   #if AXIS_IS_TMC(Z2)
-    #define Z2_CURRENT      580        // @CE@ was: 800 - 
+    #define Z2_CURRENT      CURRENT_4234        // @CE@  
     #define Z2_CURRENT_HOME Z2_CURRENT
     #define Z2_MICROSTEPS    Z_MICROSTEPS
     #define Z2_RSENSE         0.11
@@ -2688,7 +2695,7 @@
   #endif
 
   #if AXIS_IS_TMC(E0)
-    #define E0_CURRENT      650        // @CE@ was: 800 - 
+    #define E0_CURRENT      CURRENT_4240        // @CE@ 
     #define E0_MICROSTEPS    16
     #define E0_RSENSE         0.11
     #define E0_CHAIN_POS     -1
@@ -2896,7 +2903,7 @@
    * STEALTHCHOP_(XY|Z|E) must be enabled to use HYBRID_THRESHOLD.
    * M913 X/Y/Z/E to live tune the setting
    */
-  #define HYBRID_THRESHOLD  // @CE@
+  //  #define HYBRID_THRESHOLD  // @CE@
 
   #define X_HYBRID_THRESHOLD     100  // [mm/s]
   #define X2_HYBRID_THRESHOLD    100
