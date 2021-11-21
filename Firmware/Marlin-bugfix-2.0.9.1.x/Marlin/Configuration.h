@@ -69,7 +69,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(BigTreeTech, SKR-2)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(BigTreeTech, SKR-2, Chrisi)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -115,7 +115,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+#define BAUDRATE 250000 // @CE@
 //#define BAUD_RATE_GCODE     // Enable G-code M575 to set the baud rate
 
 /**
@@ -970,10 +970,11 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-//#define CLASSIC_JERK
+
+#define CLASSIC_JERK // @CE@ https://www.youtube.com/watch?v=1PPBHn-jU0k&t=1212s  (25:00)
 #if ENABLED(CLASSIC_JERK)
-  #define DEFAULT_XJERK 10.0
-  #define DEFAULT_YJERK 10.0
+  #define DEFAULT_XJERK 8 // @CE@
+  #define DEFAULT_YJERK 8 // @CE@
   #define DEFAULT_ZJERK  0.3
   //#define DEFAULT_IJERK  0.3
   //#define DEFAULT_JJERK  0.3
@@ -987,7 +988,7 @@
   #endif
 #endif
 
-#define DEFAULT_EJERK    5.0  // May be used by Linear Advance
+#define DEFAULT_EJERK    10.0  // @CE@ May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
@@ -1010,7 +1011,7 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-#define S_CURVE_ACCELERATION
+//  #define S_CURVE_ACCELERATION @CE@ => LIN_ADVANCE and S_CURVE_ACCELERATION may not play well together!
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -1373,7 +1374,7 @@
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE (310-5) // @CE@
+#define X_BED_SIZE (310-10) // @CE@
 #define Y_BED_SIZE 310 // @CE@
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
