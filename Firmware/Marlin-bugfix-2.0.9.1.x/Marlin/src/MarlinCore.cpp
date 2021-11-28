@@ -241,7 +241,7 @@
 #endif
 
 #pragma message("SKR-2 Firmware")
-#include "../../../../../MarlinCoreInclude.h" // @CE@
+#include "../../MarlinCoreInclude.h" // @CE@
 
 PGMSTR(M112_KILL_STR, "M112 Shutdown");
 

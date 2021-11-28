@@ -2951,14 +2951,14 @@
    * Comment *_STALL_SENSITIVITY to disable sensorless homing for that axis.
    */
   #define SENSORLESS_HOMING // @CE@ StallGuard capable drivers only
-
+ 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
     // TMC2209: 0...255. TMC2130: -64...63
-    #define X_STALL_SENSITIVITY  50 // @CE@
+    #define X_STALL_SENSITIVITY  200 // @CE@
     #define X2_STALL_SENSITIVITY X_STALL_SENSITIVITY
-    #define Y_STALL_SENSITIVITY  50 // @CE@
+    #define Y_STALL_SENSITIVITY  200 // @CE@
     #define Y2_STALL_SENSITIVITY Y_STALL_SENSITIVITY
-    #define Z_STALL_SENSITIVITY  40 // @CE@
+    #define Z_STALL_SENSITIVITY  not-used-with-probe // @CE@ s. HOMING_Z_WITH_PROBE
     #define Z2_STALL_SENSITIVITY Z_STALL_SENSITIVITY
     #define Z3_STALL_SENSITIVITY Z_STALL_SENSITIVITY
     #define Z4_STALL_SENSITIVITY Z_STALL_SENSITIVITY
